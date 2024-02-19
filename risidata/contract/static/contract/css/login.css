@@ -1,0 +1,101 @@
+/* LOGIN FORM */
+
+.login {
+    background: url(../img/bg.svg) no-repeat center center fixed;
+    background-size: cover;
+    background-color: var(--darkened-bg);
+    height: auto;
+}
+
+.login #header {
+    height: auto;
+    padding: 15px 16px;
+    justify-content: center;
+}
+
+.login #header h1 {
+    font-weight: 600;
+    font-size: 1.125rem;
+    margin: 0;
+}
+
+.login #content {
+    padding: 20px 20px 0;
+}
+
+.login #container {
+    background: var(--body-bg);
+    border: 1px solid var(--hairline-color);
+    border-radius: 4px;
+    overflow: hidden;
+    width: 34em;
+    min-width: 300px;
+    margin: 100px auto;
+    height: auto;
+}
+
+.login .form-row, .login .errornote {
+    padding-bottom: 15px;
+}
+
+.login .form-row label {
+    display: block;
+    line-height: 2em;
+    padding-bottom: 8px;
+}
+
+.login .form-row #id_username, .login .form-row #id_password {
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.login .form-row .input-group {
+    display: flex;
+}
+
+.login .form-row #id_password {
+    flex: 2;
+    min-width: 0;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    padding: 6px 12px;
+    margin: 0;
+    z-index: 5;
+/*    border: 1px solid #d9d9d9;*/
+}
+
+.login #input_password_eye {
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    display: flex;
+    align-items: center;    
+    padding: 0 0.7rem;
+    color: #737679;
+    text-align: center;
+    background: url(../img/icon-viewlink.svg) center center no-repeat;
+    background-size: contain;
+    background-color: var(--body-bg);
+    z-index: 4;
+}
+
+.login .form-row #id_username:hover, .login .form-row #id_password:hover {
+    border: 1px solid var(--body-quiet-color);
+}
+
+.login .submit-row {
+    padding: 1em 0 0 0;
+    margin: 0;
+    text-align: center;
+}
+
+.login .submit-row input {
+    width: 100%;
+}
+
+.login .password-reset-link {
+    text-align: right;
+    padding-bottom: 15px;
+}

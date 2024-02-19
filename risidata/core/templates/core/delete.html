@@ -1,0 +1,35 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block extrastyle %}
+    <script src="{% static 'contract/js/cancel.js' %}" async></script>
+{% endblock extrastyle %}
+
+{% block bodyclass %}delete-confirmation{% endblock %}
+
+{% block content %}
+    {% if protected %}
+        <p>{{ object_name }} '{{ object_url }}' невозможно удалить. Попробуйте воспользоваться свойством "отображение".</p>
+        {# <ul id="deleted-objects">{{ protected|unordered_list }}</ul> #}
+    {% else %}
+    {% block delete %}
+    <h1>Вы уверены, что хотите удалить {{ object_name|lower }} "{{ object_url }}"? Все следующие связанные объекты также будут удалены:</h1>
+    <h2>Краткая статистика</h2>
+    <ul>
+        {% for model_name, object_count in model_count %}
+        <li>{{ model_name|capfirst }}: {{ object_count }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Объекты</h2>
+    <ul id="deleted-objects">{{ deleted_objects|unordered_list }}</ul>
+    {% endblock delete %}
+    {% block close %}{% endblock close %}
+    <form method="post">{% csrf_token %}
+        <div>
+            <input type="hidden" name="post" value="yes">
+            <input type="submit" value="Да, я уверен">
+            <a href="#" class="button cancel-link">Нет, отменить и вернуться</a>
+        </div>
+    </form>
+    {% endif %}
+{% endblock content%}

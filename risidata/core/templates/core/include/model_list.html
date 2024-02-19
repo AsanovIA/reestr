@@ -1,0 +1,12 @@
+{% for app in app_list %}
+<div class="app-{{ app.app_label }} module{% if app.app_url in request.path|urlencode %} current-app{% endif %}">
+    <table>
+        <caption><a href="{{ app.app_url }}" class="section">{{ app.name }}</a></caption>
+        {% for model in app.models %}
+            <tr class="model-{{ model.name|lower }}{% if model.list_url in request.path|urlencode %} current-model{% endif %}">
+            {% include 'core/include/model_list_row.html' %}
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endfor %}

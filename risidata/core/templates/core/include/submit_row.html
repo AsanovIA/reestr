@@ -1,0 +1,29 @@
+{% if btn %}
+<div class="submit-row">
+
+    {% if btn.btn_save %}
+    <input type="submit" name="_save" class="default" value="Сохранить">
+    {% endif %}
+
+    {% if btn.btn_save_and_continue %}
+    <input type="submit" name="_continue" class="default" value="Сохранить и продолжить редактирование">
+    {% endif %}
+
+    {% if btn.btn_change %}
+    <input type="submit" name="_continue" class="default" value="{{ btn.btn_text }}">
+    {% endif %}
+
+    {% if btn.history %}
+    <a href="{{ history_url }}" class="history">история</a>
+    {% endif %}
+
+    {% if perm_add and btn.btn_add %}
+    <a href="{{ add_url }}" class="addlink">добавить {{ object_verbose_name|lower }}</a>
+    {% endif %}
+
+    {% if perm_delete and btn.btn_delete %}
+    <a href="{{ delete_url }}" class="deletelink">удалить {{ object_verbose_name|lower }}</a>
+    {% endif %}
+
+</div>
+{% endif %}

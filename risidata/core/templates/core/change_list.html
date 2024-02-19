@@ -1,0 +1,57 @@
+{% extends 'core/base.html' %}
+{% load static base_list_tags %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'contract/css/changelists.css' %}">
+{% if list_formset %}
+<script src="{% url 'jsi18n' %}"></script>
+<link rel="stylesheet" href="{% static 'contract/css/forms.css' %}">
+{{ media }}
+{% endif %}
+{% endblock extrastyle %}
+
+{% block bodyclass %}change-list{% endblock %}
+{% block coltype %}{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <div id="changelist" class="module">
+        <div class="changelist-form-container">
+            <form {% if formset and formset.is_multipart %} enctype="multipart/form-data"{% endif %} id="changelist-form" method="post" novalidate>
+                {% csrf_token %}
+                {% if total_result_count or btn.btn_add %}
+                {% include 'core/include/submit_row.html' %}
+                {% endif %}
+                {% if list_formset and errors %}
+                    <p class="errornote">Пожалуйста, исправьте ошибки ниже.</p>
+                    {% for cl in cls %}
+                        {{ cl.formset.non_form_errors }}
+                    {% endfor %}
+                {% endif %}
+                {% if content_title %}<h1>{{ content_title }}</h1>{% endif %}
+                {% block header_change_list %}{% endblock %}
+                {% if total_result_count %}
+                    {% for cl in cls %}
+                        {% if cl.formset %}
+                            <div>{{ cl.formset.management_form }}</div>
+                        {% endif %}
+                        <div {% if cls|length > 1 %}class="form-multitable"{% endif %}>
+                            {% result_list cl %}
+                            {% block pagination %}
+                            <p class="paginator">
+                                {% if cl.result_count %}выведено записей: {{ cl.result_count }}
+                                {% else %}записи отсутствуют
+                                {% endif %}
+                            </p>
+                            {% endblock %}
+                        </div>
+                    {% endfor %}
+                    {% if cls|length > 1 %}
+                    <p class="paginator">всего выведено записей: {{ total_result_count }}</p>
+                    {% endif %}
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

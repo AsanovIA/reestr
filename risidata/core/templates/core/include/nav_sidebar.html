@@ -1,0 +1,23 @@
+<!-- Sidebar -->
+<button class="sticky toggle-nav-sidebar" id="toggle-nav-sidebar" aria-label="Переключить навигацию"></button>
+<nav class="sticky" id="nav-sidebar" aria-label="Sidebar">
+    <div class="module current-app nav-sidebar">
+        <table>
+            <tr>
+                <th scope="row"><a href="{{ main_url }}" class="text">{{ main_url_text }}</a></th>
+                <td><a href="{{ main_url }}" class="viewlink">Перейти</a></td>
+            </tr>
+        </table>
+        <table>
+            <caption class="model-{{ name_model|lower }}{% if related_url in request.path|urlencode %} current-model{% endif %}">
+                <h1><a href="{{ related_url }}" class="text">{{ related_name }}</a></h1>
+            </caption>
+            {% for model in model_list %}
+                <tr class="model-{{ model.name|lower }}{% if model.name|lower in request.path|urlencode %} current-model{% endif %}">
+                {% include 'core/include/model_list_row.html' %}
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</nav>
+<!-- END Sidebar -->

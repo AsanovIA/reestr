@@ -1,0 +1,8 @@
+{% extends 'core/change_form.html' %}
+{% block close %}
+    {% if close %}
+    <div class="submit-row">
+        <a href="{{ close_url }}" class="deletelink">закрыть {{ object_verbose_name|lower }}</a>
+    </div>
+    {% endif %}
+{% endblock close %}

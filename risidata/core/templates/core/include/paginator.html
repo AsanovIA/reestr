@@ -1,0 +1,21 @@
+<nav id="nav-pagenator">
+    <span>
+        {% if page_obj.has_previous %}
+            {% if page_obj.number > 2 %}
+                <a href="?page=1">&laquo; 1 &emsp;</a>
+            {% endif %}
+            <a href="?page={{ page_obj.previous_page_number }}">&lt; {{ page_obj.previous_page_number }} &emsp;</a>
+        {% endif %}
+        {% for p in paginator.page_range %}
+            {% if page_obj.number == p %}
+                <span>{{ p }}</span>
+            {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">&emsp; {{ page_obj.next_page_number }} &gt;</a>
+            {% if page_obj.number < page_obj.paginator.num_pages|add:-1 %}
+                <a href="?page={{ page_obj.paginator.num_pages }}">&emsp; {{ page_obj.paginator.num_pages }} &raquo;</a>
+            {% endif %}
+        {% endif %}
+    </span>
+</nav>

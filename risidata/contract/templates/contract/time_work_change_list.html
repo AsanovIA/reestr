@@ -1,0 +1,17 @@
+{% extends 'core/change_list.html' %}
+
+{% block header_change_list %}
+{% if total_result_count %}
+    <div class="form-row aligned">
+    {% include 'core/include/siteform.html' %}
+
+    </div>
+{% endif %}
+{% endblock %}
+{% block pagination %}
+    <p class="paginator">
+        {% if total_result_count %}выведено записей: {{ total_result_count }}
+        {% else %}записи отсутствуют
+        {% endif %}
+    </p>
+{% endblock %}

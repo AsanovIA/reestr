@@ -1,0 +1,35 @@
+<!-- Sidebar -->
+<button class="sticky toggle-nav-sidebar" id="toggle-nav-sidebar" aria-label="Переключить навигацию"></button>
+<nav class="sticky" id="nav-sidebar" aria-label="Sidebar">
+    <input type="search" id="filter-filter" placeholder="Начните печатать для фильтрации...">
+    <div class="module current-app">
+        <form action="{% url 'filter' %}" method="get" name="filter">
+            {% for filter in filters.values %}
+                <table class="filter">
+                    <caption>{{ filter.title }}</caption>
+                    <tr><td>
+                    <select name="{{ filter.name }}" onchange="this.form.submit()">
+                        <option value="">------</option>
+                        {% for item in filter.queryitems %}
+                            {#{% if item.id|stringformat:"s" == filter.select %}#}
+                            {% if item.name == filter.select %}
+                                {% view item filter as i %}
+                                <option selected="selected" value="{{ item }}">{{ item }}</option>
+                                {% else %}
+                                <option value="{{ item }}">{{ item }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select></td></tr>
+                </table>
+            {% endfor %}
+            <table class="filter">
+                <caption>дата</caption>
+                <tr><td>
+                    <input type="date" name='date' value={{ date }}>
+                </td></tr>
+            </table>
+        <input type="submit" class="default" value='Выбрать' name='filter'>
+        </form>
+    </div>
+</nav>
+<!-- END Sidebar -->

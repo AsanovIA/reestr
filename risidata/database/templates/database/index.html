@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block sidebar_style %}{% endblock sidebar_style %}
+
+{% block extrastyle %}
+    <link rel="stylesheet" href="{% static 'contract/css/dashboard.css' %}">
+{% endblock extrastyle %}
+
+{% block sidebar %}{% endblock sidebar%}
+{% block bodyclass %}dashboard{% endblock %}
+{% block coltype %}colMS{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    {% include 'core/include/model_list.html' %}
+</div>
+{% endblock content%}

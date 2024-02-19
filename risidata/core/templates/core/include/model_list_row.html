@@ -1,0 +1,8 @@
+<th scope="row"><a href="{{ model.list_url }}">{{ model.vnp }}</a></th>
+{% if model.perms.add %}
+    <td><a href="{{ model.add_url }}" class="addlink">Добавить</a></td>
+{% elif model.perms.change %}
+    <td><a href="{{ model.list_url }}" class="changelink">Изменить</a></td>
+{% else %}
+    <td><a href="{{ model.list_url }}" class="viewlink">Посмотреть</a></td>
+{% endif %}

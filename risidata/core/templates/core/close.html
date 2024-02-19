@@ -1,0 +1,5 @@
+{% extends 'core/delete.html' %}
+{% block delete %}{% endblock delete %}
+{% block close %}
+<h1>Вы уверены, что хотите закрыть {{ object_name|lower }} "{{ object_url }}"?<br>Редактирование данного договора будет более не доступно, но будет доступен для чтения в архиве.</h1>
+{% endblock close %}

@@ -1,0 +1,27 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block sidebar_style %}{% endblock sidebar_style %}
+
+{% block extrastyle %}
+    <link rel="stylesheet" href="{% static 'contract/css/dashboard.css' %}">
+{% endblock extrastyle %}
+
+{% block sidebar %}{% endblock sidebar%}
+{% block bodyclass %}dashboard{% endblock %}
+{% block coltype %}colMS{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <div class="module">
+        <table>
+            <caption>{{ caption }}</caption>
+            {% for item in index_list %}
+                <tr class="app-{{ item.label }}">
+                    {% include 'core/include/model_list_row.html' with model=item %}
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock content%}

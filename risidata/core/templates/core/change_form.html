@@ -1,0 +1,33 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}{% if title %}{{ title }}{% else %}{{ related_name }}{% endif %}{% endblock title %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'contract/css/forms.css' %}">
+<script src="{% url 'jsi18n' %}"></script>
+<script src="{% static 'contract/js/ajax.js' %}" defer></script>
+{{ media }}
+{% endblock extrastyle %}
+
+{% block bodyclass %}change-form{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <form {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}
+          method="post" id="{{ model_name }}_form" novalidate>{% csrf_token %}
+        <div>
+            {% include 'core/include/submit_row.html' %}
+            {% if content_title %}<h2>{{ content_title }}</h2>{% endif %}
+            {% include 'core/include/siteform.html' %}
+            {% block close %}
+            {% if close %}
+            <div class="submit-row">
+                <a href="{{ close_url }}" class="deletelink">закрыть {{ object_verbose_name|lower }}</a>
+            </div>
+            {% endif %}
+            {% endblock close %}
+        </div>
+    </form>
+</div>
+{% endblock content %}

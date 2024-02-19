@@ -1,0 +1,7 @@
+{% if siteform.errors %}
+    <p class="errornote">Пожалуйста, исправьте ошибки ниже.</p>
+    {{ siteform.form.non_field_errors }}
+{% endif %}
+{% for fieldset in siteform %}
+    {% include 'core/include/fieldset.html' %}
+{% endfor %}
