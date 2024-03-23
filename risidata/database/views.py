@@ -194,15 +194,6 @@ class ModelsView(SettingsMixin, BaseSiteMixin, TemplateView):
         return super().get(request, *args, **kwargs)
 
 
-# class ModelView(ModelsView):
-#     """Список моделей раздела БД"""
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['app_list'] = self.get_app_list(self.app_label)
-#         return context
-
-
 class MainListView(ModelsView):
     """Список моделей раздела БД"""
 

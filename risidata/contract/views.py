@@ -1,4 +1,3 @@
-import io
 from itertools import chain
 
 from django import forms
@@ -18,8 +17,6 @@ from contract.forms import (
     StageMiddleListForm, StageEndListForm, StageAddForm, SetTimeWorkForm,
 )
 from contract.models import Contract
-# from reportlab.pdfgen import canvas
-# from contract.createpdf.PDFc import get_pdf_n
 from core.mixins import (
     BaseSiteMixin, MultipleListView, DataObjectMixin,
     AddFormView, ChangeFormView, DeleteFormView, HistoryListView,
@@ -115,38 +112,6 @@ settings_dict = {
         'readonly_fields': (),
     },
 }
-
-
-# =============== Формирования PDF документа =============== # Требуется разработка
-class PDFView(View):
-
-    def test_pdf(self):
-        # Create a file-like buffer to receive PDF data.
-        buffer = io.BytesIO()
-
-        # Create the PDF object, using the buffer as its "file."
-        p = canvas.Canvas(buffer)
-
-        # Draw things on the PDF. Here's where the PDF generation happens.
-        # See the ReportLab documentation for the full list of functionality.
-        p.drawString(100, 100, "Hello world.")
-
-        # Close the PDF object cleanly, and we're done.
-        p.showPage()
-        p.save()
-
-        # FileResponse sets the Content-Disposition header so that browsers
-        # present the option to save the file.
-        buffer.seek(0)
-        return buffer
-
-    def get(self, request):
-        path = get_pdf_n()
-        # buffer = self.test_pdf()
-        # filename = 'hello.pdf'
-
-        return FileResponse(open(path, 'rb'))
-        # return FileResponse(buffer, as_attachment=False, filename=filename)
 
 
 class ContractMixin:
@@ -798,7 +763,7 @@ class EmployeeChangeView(MultipleListView):
         )
         queryset = super().get_queryset(query)
 
-        # Формирование списока проектов и помещение его в initial
+        # Формирование списка проектов и помещение его в initial
         initial_query = Q(
             member__employee_id=self.obj_id,
             closed=False

@@ -13,45 +13,6 @@ from contract.models import (
 )
 
 
-# @admin.register(UserProfile)
-# class UserProfileAdmin(admin.ModelAdmin):
-#     save_on_top = True
-#     fields = ('id', 'user', 'username', 'password', 'first_name', 'last_name', 'middle_name', 'name', 'email',
-#               'post', 'post_abbr', 'division', 'sub_division', 'otvetstvenny', 'ispolnitel', 'soprovojdenie', 'getdoc',
-#               'view', 'date_create', 'date_update', 'user_create', 'user_update', 'last_change')
-#     list_display = ('id', 'sub_division', 'otvetstvenny', 'ispolnitel', 'soprovojdenie', 'getdoc', 'name', 'view')
-#     list_editable = ('sub_division', 'otvetstvenny', 'ispolnitel', 'soprovojdenie', 'getdoc', 'name', 'view')
-#     readonly_fields = ('id', 'user', 'name', 'date_create', 'date_update', 'user_create', 'user_update', 'last_change')
-#     list_filter = ('division', 'view',)
-#     search_fields = ('name',)
-
-
-# # Создаем админскую форму
-# class UserProfileForm(UserChangeForm):
-#     class Meta:
-#         model = UserProfile
-#         fields = ('id', 'username', 'user', 'middle_name', 'name', 'post', 'post_abbr', 'division',
-#                       'sub_division', 'otvetstvenny', 'ispolnitel', 'soprovojdenie', 'getdoc')
-
-
-
-# # Регистрируем модель Userprofilel с админской формой
-# class UserProfilelAdmin(admin.ModelAdmin):
-#     form = UserProfileForm
-#
-#     list_display = ('id', 'sub_division', 'otvetstvenny', 'ispolnitel', 'soprovojdenie', 'getdoc', 'name', 'view')
-#     list_editable = ('sub_division', 'otvetstvenny', 'ispolnitel', 'soprovojdenie', 'getdoc', 'name', 'view')
-#     readonly_fields = ('id', 'name', 'date_create', 'date_update', 'user_create', 'user_update', 'last_change')
-#     list_filter = ('division', 'view',)
-#     search_fields = ('name',)
-
-
-# # Зарегистрируем модель Userprofilel и User
-# admin.site.register(UserProfile, UserProfilelAdmin)
-# admin.site.unregister(User)  # Снимаем регистрацию User из стандартного админского интерфейса
-# admin.site.register(User, UserAdmin) # Регистрируем User с его стандартной админской формой
-
-
 class LetterInline(admin.StackedInline):
     model = Letter
     extra = 0
@@ -195,41 +156,3 @@ class TimeWorkAdmin(admin.ModelAdmin):
 
 
 admin.site.register(TimeWork, TimeWorkAdmin)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# class UserAdmin(BaseUserAdmin):
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-#         self.list_display += ('contract_close',)
-#
-#     def get_custom_permission(self, obj):
-#         return obj.get_custom_permission_display()
-#
-#     get_custom_permission.short_description = 'Custom Permission'
-#     get_custom_permission.admin_order_field = 'custom_permission'
-#
-# admin.site.unregister(Permission)
-# admin.site.register(CustomPermission, UserAdmin)
-
-
-# admin.site.register(Continent)
-# admin.site.register(Country)
-# admin.site.register(Location)
-
-# admin.site.register(price_range)
-
-# admin.site.register(Product)
-# admin.site.register(Movie)
-# admin.site.register(MyData)

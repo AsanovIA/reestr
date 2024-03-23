@@ -214,6 +214,12 @@ class ContractForm(forms.ModelForm):
             raise ValidationError('Длина превышает 10 символов')
         return title
 
+    def clean_number(self):
+        number = self.cleaned_data['number']
+        if len(number) > 10:
+            raise ValidationError('Длина превышает 10 символов')
+        return number
+
 
 class CalculationForm(ContractRelatedForm):
     matzatrall = forms.CharField(max_length=255, required=False, label='Материальные затраты')
